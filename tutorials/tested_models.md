@@ -34,7 +34,7 @@
 ### Retrieval
 
 * MNIST Siamese [\[Source\]](https://github.com/BVLC/caffe/tree/master/examples/siamese)[\[Visualise\]](http://fabrik.cloudcv.org/caffe/load?id=20171208113503xgnfd)
-* Colornet [\[Source\]](https://github.com/richzhang/colorization/blob/master/models/alexnet_deploy_lab.prototxt)[\[Visualise\]](http://fabrik.cloudcv.org/caffe/load?id=20171208113503xgnfd)
+* Colornet [\[Source\]](https://github.com/richzhang/colorization/blob/master/models/alexnet_deploy_lab.prototxt)
 
 ### Seq2Seq
 
