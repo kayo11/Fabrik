@@ -33,11 +33,10 @@ Frontend Design
 
 ```canvas.js``` also contains the code that decides whether a node's line needs to be rerouted if it is cutting through another node.
 
-#### ```canvas.js```'s placement algorithm
-The methods ```canvas.js``` uses for placement are:
-
-```checkIfCuttingLine``` is passed in a positional block that includes x and y coordinates (it assumes a px is at the end of each x and y) for each endpoint of the line it is checking.
-Specifically, it is checking if the line formed with the coordinates in the positional block will cut into any other nodes between them.
+#### ```canvas.js```'s visualisation algorithm
+The method it uses is the following:
+```checkIfCuttingLine``` takes in 2 variables: net and pos, where net has an array of all the nodes, and pos is an array of x and y coordinates checked by this method to see whether a line will cut through.
+To put it more specifically, ```checkIfCuttingLine``` checks if the line formed with the coordinates in the positional block will cut through any other nodes between them.
 
 ```checkIfCuttingLine``` creates an equation from the x and y points by calculating the slope and using point slope form.
 
@@ -88,15 +87,13 @@ Is responsible for creating the comment dialog box. Consists of:
 * ```modifyLayerParams``` - modifies layer params based on layer and layerId, invoked by SetParams
 * ```loadLayerShapes``` - AJAXs to backend to model parameters
 * ```exportNet``` - AJAXs to backend and then passes back error/success
-* ```exportPrep``` - invoked by ```exportNet```; prepares for model export
+* ```exportPrep``` - invoked by ```exportNet```; preprocessed model object for export
 * ```importNet``` - AJAXs to backend and then passes back error/success
 * ```initialiseImportedNet``` - starts prepping layer to be displayed by Fabrik, positions layers
-* ```changeNetName``` - invoked on the event of net name changed; changes the name of the net
-* ```changeNetStatus``` - changes boolean for rebuilding.
-* ```changeNetPhase``` - changes the phase of the net
-* ```dismissError``` - dissmisses the error by ```errorIndex```
-* ```addError``` - adds error using ```errorText```
-* ```dismissAllErrors``` - dismisses all errors
+* ```changeNetName``` - invoked after user starts typing in name box (placed above the model in the UI); changes the name of the net
+* ```changeNetStatus``` - takes in a boolean and changes its value (the boolean is responsible for the ```rebuildNet``` element)
+* ```changeNetPhase``` - changes the phase of the net (Train/Test)
+* ```copyTrain``` - copies the nets train phase for the test phase
 * ```copyTrain``` - copies the nets train option for the test option
 * ```trainOnly``` - mehod responsible for Train-only models
 * ```saveDb``` - creates RTC hyperlink
@@ -124,7 +121,7 @@ The error is passed in through props and then displayed to the user.
 ***
 
 #### ```field.js```
-```field.js``` contains the various different fields used by the layer editor.
+```field.js``` contains the various fields used by the layer editor.
 * ```change``` - used to change the state of checkboxes; it is passed in event e.
 * ```render``` - renders the fields
 
@@ -138,14 +135,14 @@ This file filters layers based on framework. It uses two methods:
 ***
 
 #### ```importTextbox.js```
-Renders the textbox for model import from text, using the three frameworks: Caffe, Keras and Tensorflow.
+Renders the 'Load Model From Text Input' textbox (available in the top of the main sidebar).
 
 ***
 
 #### ```jsplumb.js```
-The ```jsplumb.js``` file contains code that handles the arrangement and the dragging/connecting of layers. A new custom connector is created. There is an ```if``` function to check whether the node it is connecting to is needs to be routed through an extension. A global variable stores this information, and the actual calculation is handled in ```checkIfCuttingNet``` and ```checkIfCuttingLine```. The global variable contains the amount of pixels it needs to move over, and it will contain direction it needs to go in (based on whether it is positive or negative.)
+The ```jsplumb.js``` file contains code that handles the arrangement and the dragging/connecting of layers. The file hosts a function, which created the arrow connector(```ArrowConnector```). Later, there is a function (```this._compute```), which draws the elements. It is responsible for creating the connectors and simultaneously checks if there isn't any cutting and if extending the connector isn't neccessary. It then creates the connectors segments and styles it appropriately. Then, in ```instance.addLayerEndpoints``` the anchors of the connector are defined.
 
-Please refer to the jsplumb documentation here to learn more about this API set. https://jsplumbtoolkit.com/docs.html
+Please refer to the jsplumb documentation here to learn more about this API set: https://jsplumbtoolkit.com/docs.html
 
 ***
 
@@ -180,7 +177,7 @@ Please refer to the jsplumb documentation here to learn more about this API set.
 Both of these files contain code that determines positioning and layout of net. It is invoked by ```content.js```
 
 #### ```netLayout_vertical.js```
-Defines the vertical align of network elements. ```netLayout_vertical.js``` uses a function, called ```allocatePosition``` to give the layers their position on the canvas. It finds the closest position available to the preferred position, and checks if a node is already on that position on the X axis (if one is, a position left or right is assigned). The file also uses a custom Topolical Sort to give the nodes there position (it is based on the inputs and outputs of nodes). Later it is checked if any nodes averlap and in case they do, they are moved.
+Defines the vertical alignment of network elements. ```netLayout_vertical.js``` uses a function, called ```allocatePosition``` to give the layers their position on the canvas. It finds the closest position available to the preferred position, and checks if a node is already on that position on the X axis (if one is, a position left or right is assigned). The file also uses a custom Topolical Sort to give the nodes their position (it is based on the inputs and outputs of nodes). Later it is checked if any nodes overlap and in case they do, they are moved.
 
 #### ```netLayout.js```
 ```netLayout.js``` is used to check the Y attribute of nodes. The function ```allocatePosition``` finds the closest available position to the preffered one and allocates the module. Later the nodes are checked with a DFS algorithm (depth-first search algorithm).
