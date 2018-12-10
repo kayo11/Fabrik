@@ -7,7 +7,7 @@ Frontend Design
 (The bullets contain methods specific to the file along with their explanations.)
 
 ```addCommentModal.js``` is responsible for adding comments into the interface. It has three methods:
-* ```handleClick```
+* ```handleClick``` - invoked on click on modal
 * ```addComment``` - adds comment modal to RTC
 * ```render``` - renders the comment modals
 
@@ -19,7 +19,7 @@ Frontend Design
 
 #### ```canvas.js```
 ```content.js``` invokes an instance of ```canvas.js``` that contains the following methods:
-* ```allowDrop```
+* ```allowDrop``` - allows element to be dropped down
 * ```clickLayerEvent``` - invoked on a click of a layer or on drag of that layer
 * ```hoverLayerEvent``` - invoked on a hover
 * ```scrollCanvas``` - scrolls canvas
@@ -98,7 +98,7 @@ Is responsible for creating the comment dialog box. Consists of:
 * ```addError``` - adds error using ```errorText```
 * ```dismissAllErrors``` - dismisses all errors
 * ```copyTrain``` - copies the nets train option for the test option
-* ```trainOnly```
+* ```trainOnly``` - mehod responsible for Train-only models
 * ```saveDb``` - creates RTC hyperlink
 * ```loadDb``` - loads model for RTC by ```id```
 * ```performSharedUpdate``` - updates RTC shared model using sockets
@@ -117,7 +117,7 @@ Is responsible for creating the comment dialog box. Consists of:
 ***
 #### ```error.js```
 ```error.js``` contains Error React Component with two methods:
-* ```dismissError```
+* ```dismissError``` - dismisses opened error
 * ```render``` - renders the errors
 The error is passed in through props and then displayed to the user.
 
@@ -210,10 +210,10 @@ Defines the vertical align of network elements. ```netLayout_vertical.js``` uses
 ***
 
 #### ```setParams.js```
-Contains the following methods:
+Contains the following methods for the layer edition sidebar:
 * ```changeProps``` - changes layer properties
 * ```changeParams``` - changes layer parameters
-* ```close```
+* ```close``` - closes sidebar
 * ```trainOnly``` - turns model into a train-only
 * ```handleKeyPress``` - handles layer delete after the 'delete' key is pressed
 * ```componentDidMount``` - invokes ```handleKeyPress```
