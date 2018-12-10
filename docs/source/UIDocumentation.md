@@ -231,5 +231,5 @@ note: tooltips are "hover" messages, they tell more information about something 
 
 #### ```topbar.js```
 ```topbar.js```  shows the top section of the sidebar. It has two methods:
-* ```chceckURL``` - checks model import URL
+* ```checkURL``` - checks model import URL
 * ```render``` - renders the top section of the sidebar
