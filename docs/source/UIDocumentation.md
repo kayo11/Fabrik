@@ -6,10 +6,9 @@ Frontend Design
 #### ```addCommentModal.js```
 (The bullets contain methods specific to the file along with their explanations.)
 
-```addCommentModal.js``` is responsible for adding comments into the interface. It has three methods:
+```addCommentModal.js``` is responsible for adding comments into the interface. It has the following methods:
 * ```handleClick``` - invoked on click on modal
 * ```addComment``` - adds comment modal to RTC
-* ```render``` - renders the comment modals
 
 ***
 
@@ -19,7 +18,6 @@ Frontend Design
 
 #### ```canvas.js```
 ```content.js``` invokes an instance of ```canvas.js``` that contains the following methods:
-* ```allowDrop``` - allows element to be dropped down
 * ```clickLayerEvent``` - invoked on a click of a layer or on drag of that layer
 * ```hoverLayerEvent``` - invoked on a hover
 * ```scrollCanvas``` - scrolls canvas
@@ -28,7 +26,6 @@ Frontend Design
 * ```mouseUpEvent``` - invoked when mouse key is up
 * ```connectionEvent``` - invoked on connection; checks for cycles and modifies layers
 * ```detachConnectionEvent``` - modifies layers
-* ```render``` - renders canvas
 * ```drop``` - invoked on layer drop onto canvas; checks for errors
 
 ```canvas.js``` also contains the code that decides whether a node's line needs to be rerouted if it is cutting through another node.
@@ -56,7 +53,6 @@ If it does cut through, ```getBetween``` will return the direction the line need
 Is responsible for creating the comment sidebar. Consists of:
 * ```close``` - closes sidebar
 * ```addComment``` - adds comment
-* ```render``` - renders the sidebar
 
 ***
 
@@ -64,7 +60,6 @@ Is responsible for creating the comment sidebar. Consists of:
 Is responsible for creating the comment dialog box. Consists of:
 * ```handleClick``` - handles user click event
 * ```addComment``` - adds comment to RTC
-* ```render``` - renders the comment box
 
 ***
 
@@ -104,7 +99,6 @@ Is responsible for creating the comment dialog box. Consists of:
 * ```addSharedComment``` - adds comment shared in RTC
 * ```toggleSidebar``` - toggles the visibilty of the sidebar
 * ```handleClick``` - handles a click based on an event: handles connections and adding layers.
-* ```render``` - renders webpage using previous functions
 
 ***
 
@@ -115,7 +109,6 @@ Is responsible for creating the comment dialog box. Consists of:
 #### ```error.js```
 ```error.js``` contains Error React Component with two methods:
 * ```dismissError``` - dismisses opened error
-* ```render``` - renders the errors
 The error is passed in through props and then displayed to the user.
 
 ***
@@ -123,14 +116,12 @@ The error is passed in through props and then displayed to the user.
 #### ```field.js```
 ```field.js``` contains the various fields used by the layer editor.
 * ```change``` - used to change the state of checkboxes; it is passed in event e.
-* ```render``` - renders the fields
 
 ***
 
 #### ```filterBar.js```
 This file filters layers based on framework. It uses two methods:
 * ```changeEvent``` - filters the layers
-* ```render``` - renders the filterbar on the sidebar
 
 ***
 
@@ -148,12 +139,9 @@ Please refer to the jsplumb documentation here to learn more about this API set:
 
 #### ```layer.js```
 ```layer.js``` is invoked by ```canvas.js``` and it displays the actual layering on the jsplumb container. The position of each layer is set in the state of the layer. Its methods are:
-* ```componentDidMount``` - adds layer endpoints
-* ```componentWillUnmount``` - deletes layer endpoints
 * ```onCloseCommentModal``` - closes comment modal
 * ```onAddComment``` - opens comment tooltip
 * ```doSharedUpdate``` - shares comment in RTC
-* ```openCommentSidebar``` - opens comment sidebar
 
 ***
 
@@ -167,9 +155,6 @@ Please refer to the jsplumb documentation here to learn more about this API set:
 ***
 #### ```modelZoo.js```
 ```modelZoo.js``` contains the rendering of the modelZoo, it invokes modelElement to render the actual listing of the model. Methods:
-* ```mouseClick``` - invoked on mouse click; toggles model categories
-* ```componentDidMount``` - mounts the model search code
-* ```render``` - renders the modelZoo
 
 ***
 
@@ -187,8 +172,6 @@ Defines the vertical alignment of network elements. ```netLayout_vertical.js``` 
 #### ```pane.js```
 ```pane.js``` handles the layer panel and contains these methods:
 * ```toggleClass``` - toggles classes for the dropdown on the sidebar for layer selection
-* ```componentDidMount``` - handles element with layers: search for layers, shown elements, etc.
-* ```render``` - renders layer panel
 
 ```pane.js``` invokes ```paneElement.js``` to render out each element.
 
@@ -197,7 +180,6 @@ Defines the vertical alignment of network elements. ```netLayout_vertical.js``` 
 #### ```paneElement.js```
 ```paneElement.js``` renders out each element of the pane, it is invoked by ```pane.js```. It includes:
 * ```drag``` - allows dragging of layers
-* ```render``` - renders specific elements
 
 ```pane.js``` renders out all of the layers for selection by the user.
 ***
@@ -210,12 +192,8 @@ Defines the vertical alignment of network elements. ```netLayout_vertical.js``` 
 Contains the following methods for the layer edition sidebar:
 * ```changeProps``` - changes layer properties
 * ```changeParams``` - changes layer parameters
-* ```close``` - closes sidebar
 * ```trainOnly``` - turns model into a train-only
 * ```handleKeyPress``` - handles layer delete after the 'delete' key is pressed
-* ```componentDidMount``` - invokes ```handleKeyPress```
-* ```componentWillUnmount``` - invokes ```handleKeyPress```
-* ```render``` - renders layer options sidebar
 
 ```setParams.js``` allows users to change layer parameters and reads parameters through ```data.js```
 
@@ -232,4 +210,3 @@ note: tooltips are "hover" messages, they tell more information about something 
 #### ```topbar.js```
 ```topbar.js```  shows the top section of the sidebar. It has two methods:
 * ```checkURL``` - checks model import URL
-* ```render``` - renders the top section of the sidebar
